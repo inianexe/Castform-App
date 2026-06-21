@@ -2,7 +2,7 @@
 
 Castform is a lightweight Windows file-conversion utility for File Explorer. Install it once, then right-click a supported file, choose **Castform**, select the output settings, and convert.
 
-![Castform conversion window](docs/castform-ui.png)
+![Castform conversion window](castform-ui.png)
 
 ## What Castform Does
 
