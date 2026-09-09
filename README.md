@@ -30,25 +30,9 @@ Castform is a lightweight Windows file-conversion utility for File Explorer. Ins
 
 Microsoft Office must be installed for `.docx` and `.pptx` conversion. PDF-to-JPG is bundled through PDFium via `pypdfium2`.
 
-## Download Folder
+## Download
 
-Use the files in:
-
-```text
-github\release
-```
-
-For normal users, the important file is:
-
-```text
-Castform.exe
-```
-
-You can also share:
-
-```text
-Castform-release.zip
-```
+Download [Castform-release.zip or Castform.exe](https://github.com/inianexe/Castform-App/releases/tag/CastForm-v1.0.0) from GitHub Releases. Extract ZIP downloads before running the app. GitHub's automatic source ZIP is not the packaged application.
 
 ## Recommended Installation
 
@@ -347,41 +331,15 @@ Add a suffix:
 .\Castform.exe "D:\Studies\photo.png" --target jpg --suffix compressed
 ```
 
-## Build From Source
+## Source availability
 
-Clone or copy the repo folder:
+The checked-in `castform.py` is the command-line entry point. Its required `castform/` package, `packaging/` scripts and tests are currently missing from this repository. Installing dependencies alone cannot restore these files or produce a working source build. Use the packaged release until the complete source is restored.
 
-```text
-github\repo
-```
+`python castform.py --help` lists the command-line options without loading conversion dependencies. Conversion and Windows integration still require the complete application.
 
-Create and activate a virtual environment:
+## Report a problem
 
-```powershell
-py -m venv .venv
-.\.venv\Scripts\Activate.ps1
-```
-
-Install dependencies:
-
-```powershell
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-python -m pip install -r requirements-optional.txt
-python -m pip install pyinstaller
-```
-
-Build the EXE:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\packaging\build-exe.ps1
-```
-
-Test the EXE:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File .\packaging\test-exe.ps1
-```
+[Open an issue](https://github.com/inianexe/Castform-App/issues) with your release version, Windows version, source format, conversion settings, steps to reproduce and error text. Use a non-sensitive sample file.
 
 ## Troubleshooting
 
@@ -421,17 +379,12 @@ You enabled **PDF all pages**. Disable it to export only the page shown in the *
 
 ## Repository Layout
 
-```text
-castform.py                  CLI entry point
-castform/                    app modules
-packaging/                   EXE/MSI build scripts
-tests/                       smoke tests
-docs/castform-ui.png         UI screenshot
-requirements.txt             core dependencies
-requirements-optional.txt    PDF-to-JPG dependency
-pngwing.com (2).ico          app icon
-```
+- `castform.py`: command-line entry point.
+- `requirements.txt` and `requirements-optional.txt`: dependency lists.
+- `castform-ui.png` and `ss.png`: screenshots.
+- `LICENSE`: MIT license.
 
 ## License
 
 MIT
+
