@@ -6,17 +6,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-from castform.config import AppConfig
-from castform.pipeline import convert
-from castform.registry import (
-    install_context_menu,
-    install_startup_tray,
-    remove_context_menu,
-    remove_startup_tray,
-)
-from castform.routing import output_kind_from_text
-from castform.tray import run_tray
-from castform.ui import ask_conversion_choice, show_conversion_error, show_conversion_success
 
 
 def main() -> int:
@@ -74,6 +63,22 @@ def main() -> int:
     )
 
     args = parser.parse_args()
+
+    try:
+        from castform.config import AppConfig
+        from castform.pipeline import convert
+        from castform.registry import (
+            install_context_menu,
+            install_startup_tray,
+            remove_context_menu,
+            remove_startup_tray,
+        )
+        from castform.routing import output_kind_from_text
+        from castform.tray import run_tray
+        from castform.ui import ask_conversion_choice, show_conversion_error, show_conversion_success
+    except ModuleNotFoundError as exc:
+        print(f"Castform cannot start: missing module {exc.name}. Restore the complete castform/ package and install requirements, or use the packaged release.", file=sys.stderr)
+        return 1
 
     try:
         if args.install_context_menu:
@@ -156,3 +161,4 @@ def _open_output_folder(output: Path) -> None:
 if __name__ == "__main__":
     multiprocessing.freeze_support()
     raise SystemExit(main())
+
